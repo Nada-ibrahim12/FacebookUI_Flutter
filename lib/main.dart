@@ -230,6 +230,13 @@ void main() {
     ),
   );
 }
+
+
+
+
+
+
+
 Widget buildStoryItem(String imageUrl, String name) {
   return Padding(
     padding: const EdgeInsets.symmetric(horizontal: 8.0),
