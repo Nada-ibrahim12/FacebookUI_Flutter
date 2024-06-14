@@ -151,29 +151,108 @@ void main() {
                 ),
               ),
               const Divider(color: Color.fromARGB(255, 3, 34, 34)),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 8.0, vertical: 5.0),
+              // Stories Section
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 5.0),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.grey.withOpacity(0.3),
+                    Text(
+                      'Stories',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
                       ),
-                      child: Icon(
-                        Icons.add,
-                        color: Color.fromARGB(244, 14, 87, 224),
-                        size: 35,
+                    ),
+                    Icon(Icons.more_horiz),
+                  ],
+                ),
+              ),
+              Container(
+                height: 140, // Height of the stories section
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  children: <Widget>[
+                    // Custom story item for adding a new story
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                      child: Column(
+                        children: [
+                          Container(
+                            width: 70, // Width of the rectangle
+                            height: 100, // Height of the rectangle
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10), // Rounded corners
+                              color: Colors.grey.withOpacity(0.3),
+                            ),
+                            child: Icon(
+                              Icons.add,
+                              color: Color.fromARGB(244, 14, 87, 224),
+                              size: 35,
+                            ),
+                          ),
+                          const SizedBox(height: 5),
+                          const Text(
+                            'Your Story',
+                            style: TextStyle(fontSize: 12),
+                          ),
+                        ],
                       ),
+                    ),
+                    buildStoryItem(
+                      'https://www.example.com/path/to/your/profile/image2.jpg',
+                      'Friend 1',
+                    ),
+                    buildStoryItem(
+                      'https://www.example.com/path/to/your/profile/image3.jpg',
+                      'Friend 2',
+                    ),
+                    buildStoryItem(
+                      'https://www.example.com/path/to/your/profile/image4.jpg',
+                      'Friend 3',
+                    ),
+                    buildStoryItem(
+                      'https://www.example.com/path/to/your/profile/image4.jpg',
+                      'Friend 4',
+                    ),
+                    buildStoryItem(
+                      'https://www.example.com/path/to/your/profile/image4.jpg',
+                      'Friend 5',
                     ),
                   ],
                 ),
               ),
+              const Divider(color: Color.fromARGB(255, 3, 34, 34)),
             ],
           ),
         ),
       ),
+    ),
+  );
+}
+Widget buildStoryItem(String imageUrl, String name) {
+  return Padding(
+    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+    child: Column(
+      children: [
+        Container(
+          width: 70, // Width of the rectangle
+          height: 100, // Height of the rectangle
+          decoration: BoxDecoration(
+            color: Colors.grey.withOpacity(0.3),
+            borderRadius: BorderRadius.circular(10), // Rounded corners
+            image: DecorationImage(
+              image: NetworkImage(imageUrl),
+              fit: BoxFit.cover,
+            ),
+          ),
+        ),
+        const SizedBox(height: 5),
+        Text(
+          name,
+          style: const TextStyle(fontSize: 12),
+        ),
+      ],
     ),
   );
 }
